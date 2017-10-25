@@ -27,6 +27,7 @@ GLOVE_PATH = "dataset/GloVe/glove.840B.300d.txt"
 parser = argparse.ArgumentParser(description='NLI training')
 # paths
 parser.add_argument("--nlipath", type=str, default='dataset/SNLI/', help="NLI data path (SNLI or MultiNLI)")
+parser.add_argument("--trainmax", type=int, default='1000000', help="Maximum number of training examples to load.")
 parser.add_argument("--outputdir", type=str, default='savedir/', help="Output directory")
 parser.add_argument("--outputmodelname", type=str, default='model.pickle')
 
@@ -76,7 +77,7 @@ torch.cuda.manual_seed(params.seed)
 """
 DATA
 """
-train, valid, test = get_nli(params.nlipath)
+train, valid, test = get_nli(params.nlipath, train_max=params.trainmax)
 word_vec = build_vocab(train['s1'] + train['s2'] +
                        valid['s1'] + valid['s2'] +
                        test['s1'] + test['s2'], GLOVE_PATH)

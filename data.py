@@ -56,7 +56,7 @@ def build_vocab(sentences, glove_path):
     return word_vec
 
 
-def get_nli(data_path):
+def get_nli(data_path, train_max=None):
     s1 = {}
     s2 = {}
     target = {}
@@ -80,8 +80,14 @@ def get_nli(data_path):
         assert len(s1[data_type]['sent']) == len(s2[data_type]['sent']) == \
             len(target[data_type]['data'])
 
+        if train_max is not None and data_type == 'train':
+            s1['train']['sent'] = s1['train']['sent'][0:train_max]        
+            s2['train']['sent'] = s2['train']['sent'][0:train_max]
+            target['train']['data'] = target['train']['data'][0:train_max]
+
         print('** {0} DATA : Found {1} pairs of {2} sentences.'.format(
                 data_type.upper(), len(s1[data_type]['sent']), data_type))
+
 
     train = {'s1': s1['train']['sent'], 's2': s2['train']['sent'],
              'label': target['train']['data']}
@@ -90,3 +96,4 @@ def get_nli(data_path):
     test = {'s1': s1['test']['sent'], 's2': s2['test']['sent'],
             'label': target['test']['data']}
     return train, dev, test
+ 
