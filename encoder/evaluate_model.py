@@ -16,7 +16,7 @@ from xutils import dotdict
 
 
 GLOVE_PATH = "../dataset/GloVe/glove.840B.300d.txt"
-PATH_SENTEVAL = "../savedir/model.pickle.encoder"
+PATH_SENTEVAL = "../SentEval/"
 PATH_TRANSFER_TASKS = "../SentEval/data/senteval_data/"
 
 assert os.path.isfile(GLOVE_PATH) and PATH_SENTEVAL and PATH_TRANSFER_TASKS, 'Set PATHs'
