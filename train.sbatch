@@ -17,4 +17,4 @@ module load python/intel/2.7.12 pytorch/0.2.0_1
 
 # Run.
 mkdir $NAME
-python train_nli.py --gpu_id 0 --nlipath dataset/AllNLI/ --trainmax 1000 --outputdir $NAME $FLAGS 
+python train_nli.py --gpu_id 0 --nlipath dataset/AllNLI/ --outputdir $NAME $FLAGS 
